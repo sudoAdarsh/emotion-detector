@@ -1,6 +1,6 @@
 import torch
 from torch.optim import AdamW
-from transformers import get_scheduler
+from transformers import get_scheduler, AutoTokenizer
 
 from dataloaders import create_dataloaders
 from model import load_model
@@ -63,6 +63,13 @@ def train_model(csv_path, epochs=2, batch_size=16, lr=5e-5):
     # 7. Save final model
     model.save_pretrained("emotion_model")
     print("\nModel saved to ./emotion_model")
+
+    # Save Tokenizer in emotion_model
+    print("Setting up Tokenizer...")
+    tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+    tokenizer.save_pretrained("emotion_model")
+
+    print("Tokenizer saved to emotion_model/")
 
 
 
