@@ -87,3 +87,7 @@ def evaluate(model, val_loader, device):
 
     model.train()
     return total_loss / len(val_loader), correct / total
+
+if __name__ == "__main__":
+    csv_path = "data.csv"   # or whatever your dataset filename is
+    train_model(csv_path, epochs=2, batch_size=16, lr=5e-5)
